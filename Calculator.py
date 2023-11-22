@@ -28,8 +28,15 @@ def equals():
 
 def clearCalculator():
     global equation_txt
-    equation_txt = ""
     equation_label.set("")
+    equation_txt = ""
+
+def deleteNumbers():
+    global equation_txt
+    current_txt = equation_txt
+    update_txt = current_txt[:-1]
+    equation_label.set(update_txt)
+    equation_txt = update_txt
 
 # Start creating the label for the results and buttons for user inputs
 equation_txt = ""
@@ -106,12 +113,16 @@ button_divide = tk.Button(frame, text="÷", command=lambda: click('/'),
                      padx=15, pady=7, width=3, foreground="green")
 button_divide.grid(row=0, column=1)
 
-button_clear = tk.Button(frame, text="C", command=clearCalculator(),
+button_clear = tk.Button(frame, text="C", command=clearCalculator,
                      padx=15, pady=7, width=3, foreground="orange", background="black")
 button_clear.grid(row=0, column=0)
 
-button_result = tk.Button(frame, text="=", command=equals(),
+button_result = tk.Button(frame, text="=", command=equals,
                      padx=15, pady=7, width=3, foreground="white", background="green")
 button_result.grid(row=3, column=3)
+
+button_backspace = tk.Button(frame, text="⌫", command=deleteNumbers,
+                     padx=15, pady=7, width=3, foreground="orange")
+button_backspace.grid(row=0, column=3)
 
 window.mainloop()
